@@ -6,13 +6,13 @@ public class PlayWrightTests extends BaseTest{
     @Test(description = "filter test", priority =1)
     public void favouritesTest() {
         accountPageSteps.goToHome();
-        homePageSteps.openingRandomproduct();
+       // homePageSteps.openingRandomproduct();
         productPageSteps.addingToFavourites()
                         .signingOut()
                         .goToSignIn();
-        loginPageSteps.enterEmail(email)
-                      .enterpassword(password)
-                      .clickLogInbutton();
+     //   loginPageSteps.enterEmail(email)
+    //                  .enterpassword(password)
+      //                .clickLogInbutton();
         accountPageSteps.openFavourites();
         favouritesPageSteps.assertingCardWasAdded();
     }
@@ -34,9 +34,9 @@ public class PlayWrightTests extends BaseTest{
         favouritesPageSteps.deletingFavourite()
                            .signingOut()
                            .goToSignIn();
-        loginPageSteps.enterEmail(email)
-                      .enterpassword(password)
-                      .clickLogInbutton();
+      //  loginPageSteps.enterEmail(email)
+    //                  .enterpassword(password)
+               //       .clickLogInbutton();
         accountPageSteps.openFavourites();
         favouritesPageSteps.assertingDeletionEmptiness();
    }

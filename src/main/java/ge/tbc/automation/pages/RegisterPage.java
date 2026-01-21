@@ -2,6 +2,8 @@ package ge.tbc.automation.pages;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.options.AriaRole;
+import ge.tbc.automation.data.Constants;
 
 public class RegisterPage {
     public Locator firstName;
@@ -15,20 +17,33 @@ public class RegisterPage {
     public Locator phone;
     public Locator email;
     public Locator password;
+    public Locator invalidPasswordMessage;
+    public Locator invalidEmailMessage;
     public Locator registerButton;
+    public Locator registrationFormHeader;
+    public Locator alerts;
+    public Locator formTitle;
 
     public RegisterPage(Page page){
-        this.firstName= page.locator("#first_name");
-        this.lastName=  page.locator("#last_name");
-        this.birthDate= page.locator("#dob");
-        this.street= page.locator("#street");
-        this.postalCode=  page.locator("#postal_code");
-        this.city=  page.locator("#city");
-        this.state=  page.locator ("#state");
-        this.country= page.locator ("#country");
-        this.phone= page.locator("#phone");
-        this.email =page.locator("#email");
-        this.password = page.locator("#password");
-        this.registerButton = page.locator("button.btnSubmit");
+        this.firstName= page.getByLabel("First name");
+        this.lastName= page.getByLabel("Last name");
+        this.birthDate= page.getByLabel("Date of Birth");
+        this.street= page.getByLabel("Street");
+        this.postalCode= page.getByLabel("Postal code");
+        this.city= page.getByLabel("City");
+        this.state= page.getByLabel("State");
+        this.country= page.getByTestId("country");
+        this.phone= page.getByLabel("Phone");
+        this.email= page.getByTestId(Constants.EMAIL);
+        this.password= page.getByTestId(Constants.PASSWORD);
+
+        this.registerButton = page.getByRole(AriaRole.BUTTON,new Page.GetByRoleOptions().setName("Register"));
+        this.registrationFormHeader=page.getByRole(AriaRole.HEADING,new Page.GetByRoleOptions().setName("Customer registration"));
+
+        this.invalidPasswordMessage =page.getByTestId("password-error");
+        this.invalidEmailMessage=page.getByTestId("email-error");
+        this.alerts = page.locator("div.alert");
+
+        this.formTitle=page.getByRole(AriaRole.HEADING,new Page.GetByRoleOptions().setName(Constants.REGISTER_HEADER));
     }
 }

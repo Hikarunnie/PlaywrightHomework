@@ -11,14 +11,20 @@ public class CommonPage {
     public Locator signInButton;
     public Locator signOut;
     public Locator favouritesRedirect;
+    public Locator cartRedirect;
+    public Locator contactRedirect;
 
     public CommonPage(Page page){
-        this.homeRedirect = page.locator("a[data-test='nav-home']");
-        this.categoryRedirect = page.locator("a[data-test='nav-categories']");
-        this.accountRedirect =page.locator("a#menu");
-        this.signOut = page.locator("//a[text() ='Sign out']");
-        this.signInButton= page.locator("a[data-test='nav-sign-in']");
-        this.favouritesRedirect = page.locator("//a[text() ='My favorites']");
-        this.handToolsRedirect = page.locator("//a[text() ='Hand Tools']");
+        this.homeRedirect =  page.getByTestId("nav-home");
+        this.accountRedirect =page.getByTestId("nav-menu");
+        this.cartRedirect = page.getByTestId("nav-cart");
+        this.signInButton= page.getByTestId("nav-sign-in");
+        this.categoryRedirect = page.getByTestId("nav-categories");
+
+        this.signOut = page.getByTestId("nav-sign-out");
+        this.favouritesRedirect = page.getByTestId("nav-my-favorites");
+        this.handToolsRedirect = page.getByTestId("nav-hand-tools");
+
+        this.contactRedirect=page.getByTestId("nav-contact");
     }
 }

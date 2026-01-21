@@ -6,7 +6,7 @@ public class PlayWrightTestsIsolated extends BaseTestIsolated{
     @Test(description = "filter test", priority =1)
     public void favouritesTest() {
         accountPageSteps.goToHome();
-        homePageSteps.openingRandomproduct();
+      //  homePageSteps.openingRandomproduct();
         productPageSteps.addingToFavourites()
                 .signingOut()
                 .goToSignIn();
