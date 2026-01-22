@@ -60,4 +60,14 @@ public class Constants {
     public static final String CONTACT_FORM_SUCCESS="Thanks for your message! We will contact you shortly.";
 
 
+    public static final String PRESTA_SHOP_URL ="https://demo.prestashop.com/";
+    public static final String PRESTA_SHOP="PrestaShop";
+    public static final String HOME="Home";
+    public static final String PRESTA_CONTACT_SUBJECT= "Webmaster";
+    public static final String FILE_NAME ="pandas.jpg";
+    public static final Path TO_UPLOAD_FILE = Paths.get("src/main/resources/files/"+FILE_NAME);
+    public static final String CONTACT_SUCCESS_MESSAGE="Your message has been successfully sent to our team.";
+    public static final String CONTACT_US_TEXT="Contact us";
+    public static final String SEND_BUTTON_TEXT="Send";
+    public static final String EMAIL_ADDRESS_TEXT="Email address";
 }
