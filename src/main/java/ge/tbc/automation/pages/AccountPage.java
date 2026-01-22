@@ -9,8 +9,8 @@ public Locator pageTitle;
 public Locator favourites;
 
 public AccountPage(Page page){
-     this.pageTitle = page.locator("//h1[text()='My account']");
-     this.favourites =page.locator("a[routerlink ='favorites']");
-     this.homeRedirect = page.locator("a[data-test='nav-home']");
+     this.pageTitle = page.getByTestId("page-title");
+     this.favourites =page.getByTestId("nav-favorites");
+     this.homeRedirect = page.getByTestId("nav-home");
 }
 }

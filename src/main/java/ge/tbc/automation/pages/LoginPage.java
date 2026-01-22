@@ -2,6 +2,8 @@ package ge.tbc.automation.pages;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.options.AriaRole;
+import ge.tbc.automation.data.Constants;
 
 public class LoginPage {
     public Locator registerRedirect;
@@ -10,13 +12,18 @@ public class LoginPage {
     public Locator LogButton;
     public Locator pageTitle;
     public Locator resitle;
+    public Locator forgotPasswordLink;
 
     public LoginPage(Page page){
-        this.registerRedirect= page.locator("a[data-test='register-link']");
-        this.email =page.locator("#email");
-        this.password = page.locator("#password");
-        this.LogButton = page.locator("input.btnSubmit");
-        this.pageTitle = page.locator("//h3[text()='Login']");
-        this.resitle = page.locator("//h1[text()='My account']");
+        this.email =page.getByTestId(Constants.EMAIL);
+        this.password = page.getByTestId(Constants.PASSWORD);
+        this.pageTitle = page.getByRole(AriaRole.HEADING,new Page.GetByRoleOptions().setName("Login"));
+
+        this.registerRedirect= page.getByTestId("register-link");
+        this.LogButton = page.getByTestId("login-submit");
+        this.forgotPasswordLink =page.getByLabel("Forgot your Password?");
+
+        this.resitle = page.getByTestId("page-title");
+
     }
 }

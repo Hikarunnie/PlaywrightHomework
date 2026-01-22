@@ -49,7 +49,7 @@ public class BaseTestIsolated { // i created separate baseTest, hope this isn't 
 
         homePageSteps.goToSignIn();
         loginPageSteps.goToRegister();
-        registerPageSteps.fillUserDetails().clickRegisterButton();
+       // registerPageSteps.fillUserDetails().clickRegisterButton();
         email = registerPageSteps.getEmail();
         password = registerPageSteps.getPassword();
 

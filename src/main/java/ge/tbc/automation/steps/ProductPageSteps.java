@@ -20,7 +20,52 @@ public class ProductPageSteps extends CommonSteps{
     }
 
     public ProductPageSteps assertingCorrectTag(){
-        assertThat(productPage.tag).containsText(Constants.HAMMER);
+        assertThat(productPage.name).isVisible();
+        assertThat(productPage.categoryTag).containsText(Constants.SAFETY_GEAR);
         return this;
     }
+    public ProductPageSteps assertingCorrectBrandTAg(){
+        assertThat(productPage.brandTag).containsText(Constants.FORGE_FLEX_TOOLS);
+        return this;
+    }
+    public ProductPageSteps assertNameDisplay(){
+        productPage.name.waitFor();
+        assertThat(productPage.name).isVisible();
+        return this;
+    }
+
+    public ProductPageSteps assertPriceDisplay(){
+        assertThat(productPage.price).isVisible();
+        return this;
+    }
+    public ProductPageSteps assertDescriptionDisplay(){
+        assertThat(productPage.description).isVisible();
+        return this;
+    }
+    public ProductPageSteps assertRatingDisplay(){
+        assertThat(productPage.rating).isVisible();
+        return this;
+    }
+    public ProductPageSteps assertQuantityDisplay(){
+        assertThat(productPage.quantity).isVisible();
+        return this;
+    }
+    public ProductPageSteps increasingQuantity(){
+        productPage.increseQuantityBtn.click();
+        return this;
+    }
+    public ProductPageSteps assertingQuantity(){
+        assertThat(productPage.quantity).hasValue(Constants.QUANTITY);
+        return this;
+    }
+    public ProductPageSteps addingToCart(){
+        productPage.addToCartButton.click();
+        return this;
+    }
+    public ProductPageSteps assertingSuccessNotification(String message){
+        productPage.message.waitFor();
+        assertThat(productPage.message).containsText(message);
+        return this;
+    }
+
 }

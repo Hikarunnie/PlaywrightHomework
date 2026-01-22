@@ -18,9 +18,12 @@ public class BaseTest {
     ProductPageSteps productPageSteps;
     FavouritesPageSteps favouritesPageSteps;
     HandToolsPageSteps handToolsPageSteps;
-
-    String email;
-    String password;
+    CommonSteps commonSteps;
+    CartPageSteps cartPageSteps;
+    ForgotPasswordPageSteps forgotPasswordPageSteps;
+    ContactPageSteps contactPageSteps;
+//    String email;
+//    String password;
 
     @BeforeClass
     public void setUp() {
@@ -28,6 +31,8 @@ public class BaseTest {
 
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
         launchOptions.setHeadless(false);
+        playwright.selectors().setTestIdAttribute("data-test");
+  //  launchOptions.setSlowMo(4000);
         browser = playwright.chromium().launch(launchOptions);
 
         context = browser.newContext();
@@ -42,16 +47,12 @@ public class BaseTest {
         productPageSteps = new ProductPageSteps(page);
         favouritesPageSteps = new FavouritesPageSteps(page);
         handToolsPageSteps = new HandToolsPageSteps(page);
-
-        homePageSteps.goToSignIn();
-        loginPageSteps.goToRegister();
-        registerPageSteps.fillUserDetails().clickRegisterButton();
-        email = registerPageSteps.getEmail();
-        password = registerPageSteps.getPassword();
-
-        loginPageSteps.enterEmail(email)
-                      .enterpassword(password)
-                      .clickLogInbutton();
+        commonSteps = new CommonSteps(page);
+        cartPageSteps = new CartPageSteps(page);
+        forgotPasswordPageSteps=new ForgotPasswordPageSteps(page);
+        contactPageSteps = new ContactPageSteps(page);
+//        email = registerPageSteps.getEmail();
+//        password = registerPageSteps.getPassword();
     }
 
     @AfterClass

@@ -1,6 +1,9 @@
 package ge.tbc.automation.steps;
 import com.microsoft.playwright.Page;
 import ge.tbc.automation.pages.AccountPage;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class AccountPageSteps {
     AccountPage accountPage;
     public AccountPageSteps(Page page){
@@ -15,6 +18,10 @@ public class AccountPageSteps {
 
     public AccountPageSteps openFavourites(){
         accountPage.favourites.click();
+        return this;
+    }
+    public AccountPageSteps assertPageTitleDisplay(){
+        assertThat(accountPage.pageTitle).isVisible();
         return this;
     }
 }
