@@ -1,8 +1,27 @@
 package ge.tbc.automation.tests;
 import ge.tbc.automation.data.Constants;
+import ge.tbc.automation.steps.prestashop.ContactUsPageSteps;
+import ge.tbc.automation.steps.prestashop.PresTaHomePageSteps;
+import io.qameta.allure.*;
+import jdk.jfr.Description;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+@Test(description = "Submitting Customer Support Inquiry (HT-T10)")
+@Description("Customer Support Inquiry Test")
+@Severity(SeverityLevel.BLOCKER)
+@Epic("support")
+@Feature("contact")
+@Story("sending Support Inquiry")
 public class CustomerSupportInquiryTest extends BaseTest{
+    ContactUsPageSteps contactUsPageSteps;
+    PresTaHomePageSteps presTaHomePageSteps;
+    @BeforeClass
+    public void  declar(){
+        page.navigate(Constants.PRESTA_SHOP_URL);
+        contactUsPageSteps = new ContactUsPageSteps(page);
+        presTaHomePageSteps = new PresTaHomePageSteps(page);
+    }
     @Test(description = "going to Home page", priority = 1)
     public void navigateToHomePage() {
         presTaHomePageSteps.navigatingToHome();

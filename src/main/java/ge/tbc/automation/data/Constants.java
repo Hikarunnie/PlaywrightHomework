@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 public class Constants {
     public static final String WEBSITE_URL = "https://practicesoftwaretesting.com/";
+    public static final String TECH_CANVAS_URL="https://techcanvass.com/examples/register.html";
     public static final String FAVOURITE_CARD = " Pliers ";
     public static final String POWER_TOOLS= " Power Tools ";
     public static final String THOR_HAMMER =" Thor Hammer ";
@@ -70,4 +71,7 @@ public class Constants {
     public static final String CONTACT_US_TEXT="Contact us";
     public static final String SEND_BUTTON_TEXT="Send";
     public static final String EMAIL_ADDRESS_TEXT="Email address";
+
+    public static final String FEMALE ="female";
+    public static final String MALE ="male";
 }

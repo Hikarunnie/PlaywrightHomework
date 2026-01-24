@@ -1,13 +1,19 @@
 package ge.tbc.automation.tests;
+import ge.tbc.automation.data.Constants;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import jdk.jfr.Description;
 import org.testng.annotations.Test;
-
+@Description("playwright Isolated Tests")
+@Severity(SeverityLevel.BLOCKER)
 public class PlayWrightTestsIsolated extends BaseTestIsolated{
 
     @Test(description = "filter test", priority =1)
     public void favouritesTest() {
         accountPageSteps.goToHome();
-      //  homePageSteps.openingRandomproduct();
+        homePageSteps.openingRandomproduct(1);
         productPageSteps.addingToFavourites()
+                .expandingAccountDropdown()
                 .signingOut()
                 .goToSignIn();
         loginPageSteps.enterEmail(email)
@@ -30,8 +36,10 @@ public class PlayWrightTestsIsolated extends BaseTestIsolated{
 
     @Test(description = "remove favourite test", priority =3)
     public void removeFavouriteTest() {  // this one fails -> newly created user with no favorites, so no delete button
-        homePageSteps.goToFavourites();
+        homePageSteps.expandingAccountDropdown()
+                .goToFavourites();
         favouritesPageSteps.deletingFavourite()
+                .expandingAccountDropdown()
                 .signingOut()
                 .goToSignIn();
         loginPageSteps.enterEmail(email)
@@ -46,6 +54,6 @@ public class PlayWrightTestsIsolated extends BaseTestIsolated{
         handToolsPageSteps.goToHandTools();
         handToolsPageSteps.checkingHammerFilter()
                 .clickingOnHammer();
-        productPageSteps.assertingCorrectTag();
+        productPageSteps.assertingCorrectTag(Constants.HAMMER);
     }
 }

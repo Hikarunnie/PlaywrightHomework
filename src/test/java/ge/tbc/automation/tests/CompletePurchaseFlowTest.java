@@ -1,12 +1,20 @@
 package ge.tbc.automation.tests;
 import ge.tbc.automation.data.Constants;
+import io.qameta.allure.*;
+import jdk.jfr.Description;
 import org.testng.annotations.Test;
 
 @Test(description = "Complete Purchase Flow (HT-T7)")
+@Description("Complete Purchase Flow Test")
+@Severity(SeverityLevel.BLOCKER)
+@Epic("Transactions")
+@Feature("Purchase product")
+@Story("Completing Purchase")
 public class CompletePurchaseFlowTest  extends BaseTest{
 
     @Test(description = "navigating to homepage", priority = 1)
     public void navigateToHomepage() {
+        page.navigate(Constants.WEBSITE_URL);
          commonSteps.goToHome();
          homePageSteps.assertSortSectionDisplay()
                       .assertSortOptionsDisplay()
@@ -28,7 +36,7 @@ public class CompletePurchaseFlowTest  extends BaseTest{
                 .choosingBrand();
         for (int i = 0; i < homePageSteps.getFilteredCardCount(); i++) {   //I wanted to check tags for each card
             homePageSteps.openingRandomproduct(i);                //this was an only way I could write this(?) without using
-            productPageSteps.assertingCorrectTag()              //productPageSteps in homePageSteps T_T
+            productPageSteps.assertingCorrectTag(Constants.SAFETY_GEAR)   //productPageSteps in homePageSteps T_T
                     .assertingCorrectBrandTAg();
         }
     }

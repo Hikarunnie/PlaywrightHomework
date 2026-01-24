@@ -7,6 +7,9 @@
         <parameter name="browserType" value="chrome"/>
         <classes>
             <class name="ge.tbc.automation.tests.CustomerSupportInquiryTest"/>
+            <class name="ge.tbc.automation.tests.CompletePurchaseFlowTest"/>
+            <class name="ge.tbc.automation.tests.ContactFormSubmissionTest"/>
+            <class name="ge.tbc.automation.tests.UserRegistrationAndLoginTest"/>
         </classes>
     </test>
 
