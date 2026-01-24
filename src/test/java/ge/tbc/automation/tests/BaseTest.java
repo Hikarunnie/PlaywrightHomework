@@ -2,8 +2,11 @@ package ge.tbc.automation.tests;
 import com.microsoft.playwright.*;
 import ge.tbc.automation.data.Constants;
 import ge.tbc.automation.steps.*;
+import ge.tbc.automation.steps.prestashop.ContactUsPageSteps;
+import ge.tbc.automation.steps.prestashop.PresTaHomePageSteps;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 
 public class BaseTest {
     Playwright playwright;
@@ -24,21 +27,28 @@ public class BaseTest {
     ContactPageSteps contactPageSteps;
 //    String email;
 //    String password;
-
+    ContactUsPageSteps contactUsPageSteps;
+    PresTaHomePageSteps presTaHomePageSteps;
     @BeforeClass
-    public void setUp() {
+    @Parameters("browserType")
+    public void setUp(String browserType) {
         playwright = Playwright.create();
 
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
         launchOptions.setHeadless(false);
         playwright.selectors().setTestIdAttribute("data-test");
-  //  launchOptions.setSlowMo(4000);
-        browser = playwright.chromium().launch(launchOptions);
+      //  launchOptions.setSlowMo(4000);
+
+        if (browserType.equalsIgnoreCase("webkit")){
+            browser = playwright.webkit().launch(launchOptions);
+        } else if (browserType.equalsIgnoreCase("chrome")) {
+            browser = playwright.chromium().launch(launchOptions);
+        }
 
         context = browser.newContext();
         page = context.newPage();
 
-        page.navigate(Constants.WEBSITE_URL);
+        page.navigate(Constants.PRESTA_SHOP_URL);
 
         homePageSteps = new HomePageSteps(page);
         loginPageSteps = new LoginPageSteps(page);
@@ -53,6 +63,8 @@ public class BaseTest {
         contactPageSteps = new ContactPageSteps(page);
 //        email = registerPageSteps.getEmail();
 //        password = registerPageSteps.getPassword();
+        contactUsPageSteps = new ContactUsPageSteps(page);
+        presTaHomePageSteps = new PresTaHomePageSteps(page);
     }
 
     @AfterClass
