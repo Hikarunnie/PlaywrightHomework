@@ -20,6 +20,7 @@ public class BaseTestIsolated { // i created separate baseTest, hope this isn't 
     ProductPageSteps productPageSteps;
     FavouritesPageSteps favouritesPageSteps;
     HandToolsPageSteps handToolsPageSteps;
+    CommonSteps commonSteps;
 
     String email;
     String password;
@@ -29,7 +30,9 @@ public class BaseTestIsolated { // i created separate baseTest, hope this isn't 
     public void setUp() {
         playwright = Playwright.create();
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
-        launchOptions.setHeadless(true);
+        playwright.selectors().setTestIdAttribute("data-test");
+        launchOptions.setHeadless(false);
+      //  launchOptions.setSlowMo(1300);
         browser = playwright.chromium().launch(launchOptions);
     }
 
@@ -46,10 +49,20 @@ public class BaseTestIsolated { // i created separate baseTest, hope this isn't 
         productPageSteps = new ProductPageSteps(page);
         favouritesPageSteps = new FavouritesPageSteps(page);
         handToolsPageSteps = new HandToolsPageSteps(page);
+        commonSteps = new CommonSteps(page);
 
         homePageSteps.goToSignIn();
         loginPageSteps.goToRegister();
-       // registerPageSteps.fillUserDetails().clickRegisterButton();
+        registerPageSteps.fillingFirstName()
+                .fillingLastName()
+                .fillingBirthDate()
+                .fillingStreet()
+                .fillingCountry()
+                .fillingPostalCode()
+                .fillingCity()
+                .fillingState()
+                .fillingEmail().fillingPassword().fillingPhone()
+                .clickRegisterButton();
         email = registerPageSteps.getEmail();
         password = registerPageSteps.getPassword();
 

@@ -25,10 +25,9 @@ public class BaseTest {
     CartPageSteps cartPageSteps;
     ForgotPasswordPageSteps forgotPasswordPageSteps;
     ContactPageSteps contactPageSteps;
-//    String email;
-//    String password;
-    ContactUsPageSteps contactUsPageSteps;
-    PresTaHomePageSteps presTaHomePageSteps;
+    String email;
+    String password;
+
     @BeforeClass
     @Parameters("browserType")
     public void setUp(String browserType) {
@@ -37,7 +36,6 @@ public class BaseTest {
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions();
         launchOptions.setHeadless(false);
         playwright.selectors().setTestIdAttribute("data-test");
-      //  launchOptions.setSlowMo(4000);
 
         if (browserType.equalsIgnoreCase("webkit")){
             browser = playwright.webkit().launch(launchOptions);
@@ -47,8 +45,6 @@ public class BaseTest {
 
         context = browser.newContext();
         page = context.newPage();
-
-        page.navigate(Constants.PRESTA_SHOP_URL);
 
         homePageSteps = new HomePageSteps(page);
         loginPageSteps = new LoginPageSteps(page);
@@ -61,10 +57,6 @@ public class BaseTest {
         cartPageSteps = new CartPageSteps(page);
         forgotPasswordPageSteps=new ForgotPasswordPageSteps(page);
         contactPageSteps = new ContactPageSteps(page);
-//        email = registerPageSteps.getEmail();
-//        password = registerPageSteps.getPassword();
-        contactUsPageSteps = new ContactUsPageSteps(page);
-        presTaHomePageSteps = new PresTaHomePageSteps(page);
     }
 
     @AfterClass

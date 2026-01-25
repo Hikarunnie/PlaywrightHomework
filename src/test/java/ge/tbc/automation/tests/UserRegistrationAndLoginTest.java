@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 public class UserRegistrationAndLoginTest extends BaseTest {
     @Test(description = "navigating to sign in from homepage", priority = 1)
     public void navigateToSignIn() {
+        page.navigate(Constants.WEBSITE_URL);
         commonSteps.goToHome()
                    .goToSignIn();
         loginPageSteps.assertLogInHeaderDisplay();

@@ -1,12 +1,20 @@
 package ge.tbc.automation.tests;
 import ge.tbc.automation.data.Constants;
+import io.qameta.allure.*;
+import jdk.jfr.Description;
 import org.testng.annotations.Test;
 
 @Test(description ="Contact/Support Form Submission Flow (HT-T9)")
+@Description("Contact Form Submission Test")
+@Severity(SeverityLevel.BLOCKER)
+@Epic("support")
+@Feature("contact")
+@Story("submitting contact form")
 public class ContactFormSubmissionTest extends BaseTest {
 
     @Test(description = "navigating to contact page", priority = 1)
     public void navigatingToContactPage() {
+        page.navigate(Constants.WEBSITE_URL);
         commonSteps.goToHome()
                    .goToContactPage();
         contactPageSteps.assertHeaderDisplay();
